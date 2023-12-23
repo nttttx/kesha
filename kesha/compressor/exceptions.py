@@ -1,0 +1,2 @@
+class NonZeroExitCodeReturned(Exception):
+    pass
