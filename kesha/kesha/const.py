@@ -1,3 +1,5 @@
+"""Contains all strings used by bot"""
+
 MAX_VIDEO_AND_AUDIO_LENGTH = 600
 
 ERRS = {

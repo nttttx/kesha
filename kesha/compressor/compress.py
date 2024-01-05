@@ -1,3 +1,5 @@
+"""Compressor body"""
+
 from os import system
 
 from .exceptions import NonZeroExitCodeReturned
@@ -5,7 +7,8 @@ from .const import (COMPRESS_VIDEO_FPS, COMPRESS_VIDEO_BITRATE, COMPRESS_AUDIO_B
                     COMPRESS_VIDEO_SIZE, COMPRESS_VOLUME_BOOST)
 
 
-def compress_video(file):
+def compress_video(file) -> str:
+    """Compress video func"""
     command = ("ffmpeg -y"
                f" -i {file}"
                f" -fpsmax {COMPRESS_VIDEO_FPS}"
@@ -20,7 +23,8 @@ def compress_video(file):
     raise NonZeroExitCodeReturned(exit_code)
 
 
-def compress_audio(file):
+def compress_audio(file) -> str:
+    """Compress audio func"""
     command = ("ffmpeg -y"
                f" -i {file}"
                f" -b:a {COMPRESS_AUDIO_BITRATE}"

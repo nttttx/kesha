@@ -1,3 +1,5 @@
+"""The body of bot."""
+
 from os import environ
 import logging
 import telebot
@@ -18,6 +20,7 @@ def download(file):
 
 
 def image_compress(msg):
+    """Called if /c called on image"""
     bot.send_chat_action(msg.chat.id, "upload_photo", 5)
     file = download(msg.reply_to_message.photo[0].file_id)
     with open(file.file_path, "rb") as photo:
@@ -25,6 +28,7 @@ def image_compress(msg):
 
 
 def unified_compress(msg, target, compress, send):
+    """Unified way to compress any types of ~~moving pictures~~"""
     bot.send_chat_action(msg.chat.id, "upload_document", 5)
     if target.duration < const.MAX_VIDEO_AND_AUDIO_LENGTH:
         file = download(target.file_id)
@@ -42,6 +46,7 @@ def unified_compress(msg, target, compress, send):
 
 @bot.message_handler(commands=["c"])
 def compress_cmd(msg):
+    """/c handler"""
     if msg.reply_to_message.video:
         unified_compress(msg, msg.reply_to_message.video, compressor.compress_video, bot.send_video)
     elif msg.reply_to_message.voice:
@@ -59,8 +64,10 @@ def compress_cmd(msg):
 
 @bot.message_handler(commands=["start"])
 def start(msg):
+    """/start handler"""
     bot.reply_to(msg, const.START)
 
 
 def main():
+    """Bot entry"""
     bot.infinity_polling()

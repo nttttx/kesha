@@ -1,3 +1,5 @@
+"""Settings for compressor"""
+
 COMPRESS_VOLUME_BOOST = "20dB"
 COMPRESS_VIDEO_FPS = 5
 COMPRESS_VIDEO_SIZE = "128x128"

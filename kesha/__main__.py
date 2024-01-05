@@ -1,3 +1,5 @@
+"""Program entry point"""
+
 import logging
 
 from kesha.kesha.main import main
